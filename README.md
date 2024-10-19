@@ -4,14 +4,15 @@
 **Introduction**
 ---------------
 
-This project simulates a Prisoners Dilemma game between different bots, each with its own strategy. The goal is to observe how different strategies interact with each other and which ones emerge as the most successful.
+This project simulates a Prisoner's Dilemma game between different bots, each with its own strategy. The goal is to observe how different strategies interact with each other and which ones emerge as the most successful.
 
 **How to Participate**
 ----------------------
 
-1. **Create a new bot**: Add a new bot to the `bots` list in the `main` function. Give your bot a unique name and define its strategy as a function that takes a list of tuples (representing the game history) and returns either 'cooperate' or 'defect'.
-2. **Run the simulation**: Run the `main` function to simulate the game between all bots, including yours.
-3. **Review the results**: Check the `round_robin_results.csv` file to see how your bot performed against other bots. The file contains a matrix showing the scores for each matchup.
+1. **Create a new bot**: Define your bot's strategy as a function that takes a list of tuples (representing the game history) and returns either 'cooperate' or 'defect'.
+2. Add your new bot to the `bots` list in the `main` function. Give your bot a unique name!
+3. **Run the simulation**: Run the `main` function to simulate the game between all bots, including yours.
+4. **Review the results**: Check the `round_robin_results.csv` file to see how your bot performed against other bots in a matrix format. The `final_results.csv` shows a sum of all points.
 
 **Example Bot Strategies**
 ---------------------------
