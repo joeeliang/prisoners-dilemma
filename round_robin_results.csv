@@ -1,0 +1,5 @@
+,Always Defect,Always Cooperate,Tit for Tat,Random
+Always Defect,,500 - 0,104 - 99,284 - 54
+Always Cooperate,0 - 500,,300 - 300,159 - 394
+Tit for Tat,99 - 104,300 - 300,,238 - 243
+Random,54 - 284,394 - 159,243 - 238,
