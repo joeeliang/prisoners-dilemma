@@ -13,6 +13,7 @@ This project simulates a Prisoner's Dilemma game between different bots, each wi
 2. Add your new bot to the `bots` list in the `main` function. Give your bot a unique name!
 3. **Run the simulation**: Run the `main` function to simulate the game between all bots, including yours.
 4. **Review the results**: Check the `round_robin_results.csv` file to see how your bot performed against other bots in a matrix format. The `final_results.csv` shows a sum of all points.
+5. **Submission**: Once you are happy with your code, s
 
 **Example Bot Strategies**
 ---------------------------
