@@ -82,6 +82,20 @@ def adaptive_strategy(history: List[Tuple[str, str]]) -> str:
         # Default to cooperation
         return 'cooperate'
 
+def tit_for_tat_nice(history: List[Tuple[str, str]]):
+    # Cooperate first
+    if not history:
+        return 'cooperate'
+    
+    # Do tit for tat, but sometimes cooperate if you defected last round
+    # This has a chance of beating tit for tat and adaptive in some matchups
+    # Based off Axelrod's Tournament and successful strategies: https://en.wikipedia.org/wiki/Prisoner%27s_dilemma 
+    last_move = history[-1][1] 
+    if last_move == 'defect' and random.random() < 0.05:
+        return 'cooperate'
+    return  last_move 
+
+
 def run_simulation(game: PrisonersDilemma, bot1: Bot, bot2: Bot, rounds: int) -> Tuple[int, int, List[dict]]:
     '''Running the simulation and recording detailed match history.'''
     history = []
@@ -122,7 +136,8 @@ def main():
         Bot("Always Cooperate", always_cooperate),
         Bot("Tit for Tat", tit_for_tat),
         Bot("Random", random_choice),
-        Bot("Adaptive Bot", adaptive_strategy)  # Added your adaptive bot here
+        Bot("Adaptive Bot", adaptive_strategy),  # Added your adaptive bot here
+        Bot("Tit for Tat Nice", tit_for_tat_nice) # Little nicer tit for tat
     ]
 
     rounds = 100
