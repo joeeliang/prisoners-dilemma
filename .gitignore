@@ -1,0 +1,6 @@
+# Run artifacts
+results/
+plots/
+
+# Specific round results
+*.csv
