@@ -26,23 +26,28 @@ class Bot:
         self.score = 0
         self.strategy = strategy
 
-    def make_move(self, history: List[Tuple[str, str]]) -> str:
+    def make_move(self, history):
         '''Standardizes the code to call the strategy'''
         return self.strategy(history)
 
-def always_defect(history: List[Tuple[str, str]]) -> str:
+# Start here
+
+def always_defect(history):
     return 'defect'
 
-def always_cooperate(history: List[Tuple[str, str]]) -> str:
+def always_cooperate(history):
     return 'cooperate'
 
-def tit_for_tat(history: List[Tuple[str, str]]) -> str:
+def tit_for_tat(history):
     if not history:
         return 'cooperate'
     return history[-1][1]  # Copy opponent's last move
 
-def random_choice(history: List[Tuple[str, str]]) -> str:
+def random_choice(history):
     return random.choice(['cooperate', 'defect'])
+
+def joe_bot(history):
+    return 'cooperate'
 
 # ----- add your bot here! You can look at the previous code for some inspiration. Don't forget to add your bot to the main function below later!
 
@@ -65,11 +70,13 @@ def run_simulation(game: PrisonersDilemma, bot1: Bot, bot2: Bot, rounds: int) ->
 def main():
     game = PrisonersDilemma()
     # IMPORTANT: ADD YOUR BOT HERE WITH THE NAME TO YOUR FUNCTION.
+    # WHATEVER I WANT
     bots = [
         Bot("Always Defect", always_defect),
         Bot("Always Cooperate", always_cooperate),
         Bot("Tit for Tat", tit_for_tat),
-        Bot("Random", random_choice)
+        Bot("Random", random_choice),
+        Bot("Joe's Bot", joe_bot)
     ]
 
     rounds = 100
