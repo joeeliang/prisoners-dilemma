@@ -3,7 +3,6 @@ from typing import List, Tuple, Callable
 import csv
 import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 import os
 
 # I will try my best to document the code here so that it is easily accessible to everyone.
@@ -104,7 +103,6 @@ def main():
     all_match_histories = []
 
     # Create output directories if they don't exist
-    os.makedirs('results', exist_ok=True)
     os.makedirs('plots', exist_ok=True)
 
     # Run simulations
@@ -117,8 +115,6 @@ def main():
 
             # Save detailed match history
             df_match = pd.DataFrame(match_history)
-            filename = f'results/{bot1.name}_vs_{bot2.name}.csv'
-            df_match.to_csv(filename, index=False)
             all_match_histories.append(df_match)
 
             # Generate plots for this match
@@ -160,18 +156,6 @@ def main():
     }).reset_index()
     summary_stats.columns = ['Bot Name', 'Average Score For', 'Total Score For', 'Average Score Against', 'Total Score Against']
     summary_stats.to_csv('summary_statistics.csv', index=False)
-
-    # Overall Performance Plot
-    total_scores = {bot.name: bot.total_score for bot in bots}
-    plt.figure(figsize=(10, 6))
-    sns.barplot(x=list(total_scores.keys()), y=list(total_scores.values()))
-    plt.title('Total Scores of Bots')
-    plt.xlabel('Bot Name')
-    plt.ylabel('Total Score')
-    plt.savefig('plots/Total_Scores.png')
-    plt.close()
-
-    print("Summary statistics and plots have been saved.")
 
 if __name__ == "__main__":
     main()
