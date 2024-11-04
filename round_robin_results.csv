@@ -1,6 +1,6 @@
-,Always Defect,Always Cooperate,Tit for Tat,Random,Adaptive Bot
-Always Defect,,500 - 0,104 - 99,336 - 41,104 - 99
-Always Cooperate,0 - 500,,300 - 300,150 - 400,273 - 318
-Tit for Tat,99 - 104,300 - 300,,230 - 230,299 - 299
-Random,41 - 336,400 - 150,230 - 230,,290 - 195
-Adaptive Bot,99 - 104,318 - 273,299 - 299,195 - 290,
+,Always Defect,Always Cooperate,Tit for Tat,Random,Joe's Bot
+Always Defect,,500 - 0,104 - 99,292 - 52,500 - 0
+Always Cooperate,0 - 500,,300 - 300,150 - 400,300 - 300
+Tit for Tat,99 - 104,300 - 300,,224 - 229,300 - 300
+Random,52 - 292,400 - 150,229 - 224,,412 - 132
+Joe's Bot,0 - 500,300 - 300,300 - 300,132 - 412,

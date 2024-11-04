@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import os
 
+# 
+
 # I will try my best to document the code here so that it is easily accessible to everyone.
 
 class PrisonersDilemma:
@@ -34,6 +36,12 @@ class Bot:
         return self.strategy(history)
 
 # Start here
+
+def john_bot(history):
+    if history:
+        return history[-1][0]
+    else:
+        return "cooperate"
 
 def always_defect(history):
     return 'defect'

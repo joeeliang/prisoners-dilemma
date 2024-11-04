@@ -1,5 +1,5 @@
 Bot Name,Average Score For,Total Score For,Average Score Against,Total Score Against
-Always Cooperate,2.41,723,3.3933333333333335,1018
-Always Defect,2.61,1044,0.5975,239
-Random,2.9,290,1.95,195
-Tit for Tat,2.645,529,2.645,529
+Always Cooperate,2.5,750,3.3333333333333335,1000
+Always Defect,3.49,1396,0.3775,151
+Random,4.12,412,1.32,132
+Tit for Tat,2.62,524,2.645,529
