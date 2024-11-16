@@ -343,7 +343,80 @@ def gustavo_3(history):
             return 'defect'
         else:
             return 'cooperate'
+def doggo(history: List[Tuple[str, str]]) -> str:
+    if len(history)>1:
+        if history [-1][0] == 'defect':
+            return 'defect'
+        else:
+            return 'cooperate'
+    if len(history)>2:
+        if history[-2][1] == 'defect':
+            if history[-1][1] == 'defect':
+                return 'defect'
+            else:
+                return 'cooperate'
+        else:
+            return 'cooperate'
+    else:
+        return 'cooperate'
+
+def gustavo_6(history):
+    if not history:
+        return "defect"
+    if history[-1][1] == "defect":
+        return "defect"
+    else:
+        return "cooperate"
         
+def joeTry1(history):
+    if not history:
+        return "cooperate"
+    if len(history) > 1:
+        if history[-2][0] == "defect" and history[-1][1] == "cooperate":
+            return "defect"
+    if history[-1][1] == "cooperate":
+        return "cooperate"
+    else:
+        chance = random.random()
+        if chance < 0.97:
+            return 'defect'
+    return "cooperate"
+
+def joeEvil(history):
+    if not history:
+        return "cooperate"
+    if len(history) == 3:
+        return "defect"
+    if len(history) > 1:
+        if history[-2][0] == "defect" and history[-1][1] == "cooperate":
+            return "defect"
+    if history[-1][1] == "cooperate":
+        return "cooperate"
+    else:
+        chance = random.random()
+        if chance < 0.97:
+            return 'defect'
+    return "cooperate"
+
+def dannyCopy(history):
+    if not history:
+        return 'cooperate' 
+    return history[-1][1]
+
+def simpl(history: List[Tuple[str, str]]) -> str:
+    if len(history) >= 3:
+        if history[-3][1] == "cooperate" and history[-2][1] == "cooperate" and history[-1][1] == "cooperate":
+            return "cooperate"
+    return "defect"
+
+def peanut(history: List[Tuple[str, str]]) -> str:
+    if not history:
+        return 'defect'
+    if history[-1][1] == 'cooperate':
+        return 'defect'
+    if history [-1][1] == 'defect':
+        return 'cooperate'
+
 def insanity(history: List[Tuple[str, str]]) -> str:
     if len(history) == 0:
         return 'cooperate'
@@ -380,6 +453,42 @@ def Sujith2(history: List[Tuple[str, str]]) -> str:
             return "defect"
     return 'cooperate'
  
+def gustavo_5(history):
+    if not history:
+        return "cooperate"
+    if history[-1][1] == "cooperate":
+        chance = random.randint(0,100)
+        if chance < 95:
+            return 'defect'
+        else:
+            return 'cooperate'
+    else:
+        chance = random.randint(0,100)
+        if chance < 85:
+            return 'defect'
+        else:
+            return 'cooperate'
+
+def Rock_4(history: List[Tuple[str, str]]) -> str:
+    if not history:
+        return 'cooperate'
+    if len(history) > 2:
+        if history[-1][0] ==  history[-2][0] == 'cooperate':
+            return 'defect'
+        if history[-1][1] ==  history[-1][-1] == 'cooperate':
+            return 'defect'
+    return 'cooperate'  # or 'defect'
+
+def Sujith3(history: List[Tuple[str, str]]) -> str:
+    chance = random.randint(1, 100)
+    if not history:
+        return 'cooperate'
+    else:
+        if chance <= 90:
+            return 'defect'
+        else:
+            return 'cooperate'
+
 def gustavo_4(history):
     chance = random.randint(0,100)
     if len(history) > 80:
@@ -388,11 +497,27 @@ def gustavo_4(history):
         return "defect"
     else:
         return "cooperate"
+    
+def Sujith3(history: List[Tuple[str, str]]) -> str:
+    chance = random.randint(1, 100)
+    if not history:
+        return 'cooperate'
+    else:
+        if chance <= 90:
+            return 'defect'
+        else:
+            return 'cooperate'
 
 def main():
     game = PrisonersDilemma()
     # IMPORTANT: ADD YOUR BOT HERE WITH THE NAME TO YOUR FUNCTION.
     bots = [
+        Bot("Peanut",peanut),
+        Bot("Rocks fat bot", Rock_4),
+        Bot("Sujith3", Sujith3),
+        Bot("Gustavo6", gustavo_6),
+        Bot("Gavin's Simpl",simpl),
+        Bot("joe is better", joeTry1),
         Bot("Last Straw", last_straw),
         Bot("Rock_3", Rock_3),
         Bot("glass", glass),
@@ -400,7 +525,9 @@ def main():
         Bot("Always Defect", always_defect),
         Bot("Tit for Tat", tit_for_tat),
         Bot("Random", random_choice),
-        Bot("Joe's Bot", joe),
+        Bot("Danny's copy", dannyCopy),
+        Bot("Dog", doggo),
+        Bot("Joe's Bot", joeEvil),
         Bot("Danny's first", danny),
         Bot("Hyeon's First", Hyeon),
         Bot("Gustavo's First", gustavo),
@@ -418,6 +545,7 @@ def main():
         Bot("Simon's Defect", simon_1),
         Bot("Rock 2", Rock_2),
         Bot("Sujith",Sujith),
+        Bot("Gustavo5", gustavo_5),
         Bot("Joe's Try",exploitnoobs),
         Bot("Kitcat", kitcat_tm),
         Bot("Gustavo3", gustavo_3),
@@ -426,8 +554,6 @@ def main():
         Bot("Bains2", Bains2),
         Bot("Insanity", insanity),
         Bot("Cruelty", cruelty)
-
-
     ]
 
     rounds = random.randint(90,110)
