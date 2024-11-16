@@ -5,7 +5,6 @@ import csv
 # I will try my best to document the code here so that it is easily accessible to everyone.
 
 class PrisonersDilemma:
-    '''This is the class that stores the parameters to the prisoners dilemma.'''
     def __init__(self):
         # Below is the matrix of rewards for cooperating and defecting.
         self.payoff_matrix = {
@@ -20,14 +19,12 @@ class PrisonersDilemma:
         return self.payoff_matrix[(move1, move2)]
 
 class Bot:
-    '''The template for the bot. Each bot will have a name, a score, and a strategy. Your job is to code a function that acts as the strategy for the bot.'''
     def __init__(self, name: str, strategy: Callable[[List[Tuple[str, str]]], str]):
         self.name = name
         self.score = 0
         self.strategy = strategy
 
     def make_move(self, history: List[Tuple[str, str]]) -> str:
-        '''Standardizes the code to call the strategy'''
         return self.strategy(history)
 
 def always_defect(history: List[Tuple[str, str]]) -> str:
@@ -47,7 +44,6 @@ def random_choice(history: List[Tuple[str, str]]) -> str:
 # ----- add your bot here! You can look at the previous code for some inspiration. Don't forget to add your bot to the main function below later!
 
 def run_simulation(game: PrisonersDilemma, bot1: Bot, bot2: Bot, rounds: int) -> Tuple[int, int]:
-    '''Running the simulation.'''
     history = []
     gamescore1 = 0
     gamescore2 = 0
@@ -86,7 +82,6 @@ def main():
     # Create the matrix
     matrix = [[bot.name] + [results.get((bot.name, opponent.name), "") for opponent in bots] for bot in bots]
 
-    # Write to CSV
     with open('round_robin_results.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile) # Write header
         writer.writerow([''] + [bot.name for bot in bots]) # Write data
