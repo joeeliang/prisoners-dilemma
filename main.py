@@ -14,7 +14,7 @@ class PrisonersDilemma:
             ('defect', 'defect'): (1, 1)
         }
 
-    def play_round(self, move1: str, move2: str) -> Tuple[int, int]:
+    def play_round(self, move1, move2) -> Tuple[int, int]:
         # The function runs one round between two players, returning the points for the round.
         return self.payoff_matrix[(move1, move2)]
 
