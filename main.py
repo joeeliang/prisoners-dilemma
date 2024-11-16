@@ -41,6 +41,27 @@ def tit_for_tat(history: List[Tuple[str, str]]) -> str:
 def random_choice(history: List[Tuple[str, str]]) -> str:
     return random.choice(['cooperate', 'defect'])
 
+def joe(history):
+    chance = random.random()
+    if history[-1][1] == 'defect':
+        return 'defect'
+    if chance < 0.5:
+        return 'defect'
+    else:
+        return 'cooperate'
+
+def checkLastThree(history):
+    howMuchDefect = 0
+    if len(history) > 2:
+        scope = history[-2:]
+        for i in scope:
+            if i[1] == 'defect':
+                howMuchDefect += 1
+        if howMuchDefect > 2:
+            return 'defect'
+    return 'cooperate'
+
+
 # ----- add your bot here! You can look at the previous code for some inspiration. Don't forget to add your bot to the main function below later!
 
 def run_simulation(game: PrisonersDilemma, bot1: Bot, bot2: Bot, rounds: int) -> Tuple[int, int]:
@@ -65,7 +86,8 @@ def main():
         Bot("Always Defect", always_defect),
         Bot("Always Cooperate", always_cooperate),
         Bot("Tit for Tat", tit_for_tat),
-        Bot("Random", random_choice)
+        Bot("Random", random_choice),
+        Bot("Joe's Bot", joe)
     ]
 
     rounds = 100
