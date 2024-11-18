@@ -175,6 +175,25 @@ def gustavoSecond(history):
         else:
             return 'cooperate'
 
+def Rock_5(history: List[Tuple[str, str]]) -> str:
+    if not history:
+        return 'cooperate'
+    if len(history) > 2:
+        if history[-1][0] == 'defect':
+            return 'cooperate'
+        if history[-1][1] == 'cooperate':
+            return 'defect'
+    return 'cooperate'  # or 'defect'
+
+def Rock_6(history: List[Tuple[str, str]]) -> str:
+    if not history:
+        return 'defect'
+    if len(history) > 2:
+        if history[-1][0] == 'defect':
+            return 'cooperate'
+        if history[-1][1] == 'cooperate':
+            return 'defect'
+    return 'defect'  
 
 def simon_last_turn_defect(history: List[Tuple[str, str]]) -> str:
     #Cooperate on the first turn
@@ -507,6 +526,15 @@ def Sujith3(history: List[Tuple[str, str]]) -> str:
             return 'defect'
         else:
             return 'cooperate'
+def Rock_7(history):
+    if not history:
+        return 'cooperate'
+    else:
+        if random.randint(0, 100)<80:
+            return history[-1][1]
+        else:
+            return "defect"
+    return 'cooperate'  # or 'defect'
 
 def main():
     game = PrisonersDilemma()
@@ -517,7 +545,7 @@ def main():
         Bot("Sujith3", Sujith3),
         Bot("Gustavo6", gustavo_6),
         Bot("Gavin's Simpl",simpl),
-        Bot("joe is better", joeTry1),
+        # Bot("joe", joeTry1),
         Bot("Last Straw", last_straw),
         Bot("Rock_3", Rock_3),
         Bot("glass", glass),
@@ -525,9 +553,10 @@ def main():
         Bot("Always Defect", always_defect),
         Bot("Tit for Tat", tit_for_tat),
         Bot("Random", random_choice),
+        Bot("Chinese", Rock_7),
         Bot("Danny's copy", dannyCopy),
         Bot("Dog", doggo),
-        Bot("Joe's Bot", joeEvil),
+        # Bot("Joe's Bot", joeEvil),
         Bot("Danny's first", danny),
         Bot("Hyeon's First", Hyeon),
         Bot("Gustavo's First", gustavo),
@@ -553,7 +582,9 @@ def main():
         Bot("Gustavo4", gustavo_4),
         Bot("Bains2", Bains2),
         Bot("Insanity", insanity),
-        Bot("Cruelty", cruelty)
+        Bot("Cruelty", cruelty),
+        Bot("Rock 5", Rock_5),
+        Bot("Rock 6", Rock_6),
     ]
 
     rounds = random.randint(90,110)
