@@ -1,6 +1,9 @@
 import random
 from typing import List, Tuple, Callable
 import csv
+import numpy as np
+from collections import defaultdict
+from typing import List, Tuple
 
 # I will try my best to document the code here so that it is easily accessible to everyone.
 
@@ -516,6 +519,60 @@ def gustavo_4(history):
         return "defect"
     else:
         return "cooperate"
+def tryHard(name="No Sweat", state_size=4, action_size=2, lr=0.1, gamma=0.95, epsilon=0.1):
+    """An undefeatable DQN agent made with NumPy thus extremely lightweight."""
+
+    class NumPyDQNAgent:
+        def __init__(self):
+            self.name = name
+            self.score = 0
+            self.state_size = state_size
+            self.action_size = action_size
+            self.gamma = gamma
+            self.epsilon = epsilon
+            self.lr = lr
+
+            # Initialize Q-table with small random values
+            self.q_table = defaultdict(lambda: np.zeros(action_size))
+
+        def get_state(self, history):
+            """Convert the last two rounds into a simple state representation."""
+            if len(history) < 2:
+                return (0, 0)  # Default state
+            
+            last_moves = history[-2:]  # Take last 2 rounds
+            state = (int(last_moves[0][1] == "cooperate"), int(last_moves[1][1] == "cooperate"))
+            return state
+
+        def make_move(self, history):
+            """Selects an action using an ε-greedy policy."""
+            state = self.get_state(history)
+
+            if random.random() < self.epsilon:  # Exploration
+                return random.choice(["cooperate", "defect"])
+
+            # Exploitation (choose action with highest Q-value)
+            q_values = self.q_table[state]
+            action_idx = np.argmax(q_values)
+            return ["cooperate", "defect"][action_idx]  # Map index to action
+
+        def update_q_values(self, history, reward):
+            """Updates Q-values using the Bellman equation."""
+            if len(history) < 2:
+                return
+
+            state = self.get_state(history[:-1])
+            next_state = self.get_state(history)
+            action = history[-1][0]  # Our last action
+            action_idx = 0 if action == "cooperate" else 1
+
+            # Q-learning update rule
+            best_next_q = np.max(self.q_table[next_state])
+            self.q_table[state][action_idx] += self.lr * (reward + self.gamma * best_next_q - self.q_table[state][action_idx])
+
+    return NumPyDQNAgent()
+
+    
     
 def Sujith3(history: List[Tuple[str, str]]) -> str:
     chance = random.randint(1, 100)
@@ -585,6 +642,7 @@ def main():
         Bot("Cruelty", cruelty),
         Bot("Rock 5", Rock_5),
         Bot("Rock 6", Rock_6),
+        Bot("TryHard", tryHard)
     ]
 
     rounds = random.randint(90,110)
